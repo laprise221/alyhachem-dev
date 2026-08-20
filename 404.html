@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page introuvable | Aly Hachem Development</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#16225E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .lost{ min-height:78vh; display:flex; align-items:center; }
+  .lost .code{
+    font-family:var(--f-mono); font-size:.72rem; font-weight:500;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--steel); margin:0 0 18px;
+  }
+  .lost p.msg{ color:var(--muted); max-width:52ch; margin:0 0 34px; }
+  .site-foot{ padding-top:0; }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="./" aria-label="Aly Hachem Development — accueil">
+      <img src="assets/img/logo-ahd.png" alt="Logo Aly Hachem Development" width="720" height="368">
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="./#services">Services</a>
+      <a href="./#realisations">Réalisations</a>
+      <a class="btn btn-sm btn-primary" href="./#contact">Me contacter</a>
+    </nav>
+  </div>
+</header>
+
+<main class="lost">
+  <div class="wrap">
+    <p class="code">Erreur 404</p>
+    <h1 class="display">Cette page n'existe <em>pas.</em></h1>
+    <p class="msg">
+      Le lien est peut-être périmé, ou l'adresse comporte une faute de frappe.
+      Le reste du site fonctionne.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="./">Retour à l'accueil</a>
+      <a class="btn btn-ghost" href="./#contact">Me signaler le lien</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-legal">
+    <p>© <span id="year">2026</span> Aly Hachem Development — Dakar, Sénégal.</p>
+    <p><a href="mailto:aly.hachemreda@gmail.com">aly.hachemreda@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Outils locaux
+.claude/settings.local.json
+node_modules/
+
+# Système
+.DS_Store
+Thumbs.db
+*.log
