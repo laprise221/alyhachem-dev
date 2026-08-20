@@ -1,7 +1,12 @@
 # Aly Hachem Development — site vitrine
 
 Site statique (HTML / CSS / JS, aucune dépendance, aucun build).
-Domaine prévu : **https://alyhachem.dev**
+
+| | |
+|---|---|
+| **En ligne** | https://laprise221.github.io/alyhachem-dev/ |
+| **Dépôt** | https://github.com/laprise221/alyhachem-dev |
+| **Domaine prévu** | https://alyhachem.dev |
 
 ## Contenu
 
@@ -21,37 +26,76 @@ favicon.png           fichier source d'origine (non utilisé par le site)
 
 ## Voir le site en local
 
-Ouvrir `index.html` directement ne marche pas : les chemins sont absolus (`/assets/…`).
-Il faut un petit serveur :
+Les chemins des ressources sont **relatifs** : le site fonctionne aussi bien à la racine
+d'un domaine que sur un sous-chemin. Mais ouvrir `index.html` par double-clic reste
+déconseillé (le `fetch` du manifeste et certains comportements diffèrent en `file://`).
+Lancer plutôt un petit serveur :
 
 ```bash
 python3 -m http.server 8000
 # puis http://localhost:8000
 ```
 
-## Mise en ligne
+## Publier une modification
 
-N'importe quel hébergeur statique convient. Déposer le dossier tel quel.
+GitHub Pages est branché sur la branche `main`, dossier racine. Chaque `push` redéploie
+le site tout seul, en une à deux minutes.
 
-**Netlify / Vercel / Cloudflare Pages** — glisser-déposer le dossier, ou connecter un dépôt Git.
-Aucune commande de build, dossier à publier : la racine.
-`404.html` est repris automatiquement comme page d'erreur.
+```bash
+git add -A
+git commit -m "Ajout de la réalisation X"
+git push
+```
 
-**Hébergement classique (cPanel, OVH, LWS…)** — envoyer le contenu dans `public_html/` en FTP.
+État du déploiement : onglet **Actions** du dépôt, ou `gh api repos/laprise221/alyhachem-dev/pages --jq .status`.
 
-Puis, chez le registrar du domaine, faire pointer `alyhachem.dev` vers l'hébergeur
-et **activer le HTTPS** (obligatoire pour le référencement).
+## Brancher le domaine alyhachem.dev
+
+Le site tourne pour l'instant sur l'URL GitHub. Pour passer sur le vrai domaine :
+
+1. **Chez le registrar du domaine**, créer les enregistrements DNS :
+
+   ```
+   A     @   185.199.108.153
+   A     @   185.199.109.153
+   A     @   185.199.110.153
+   A     @   185.199.111.153
+   CNAME www laprise221.github.io.
+   ```
+
+2. **Déclarer le domaine à GitHub** — cela crée le fichier `CNAME` à la racine :
+
+   ```bash
+   gh api -X PUT repos/laprise221/alyhachem-dev/pages -f cname=alyhachem.dev
+   git pull   # récupérer le fichier CNAME créé par GitHub
+   ```
+
+3. Attendre la propagation DNS (quelques minutes à 24 h), puis **cocher « Enforce HTTPS »**
+   dans *Settings → Pages*. Le certificat est gratuit et automatique.
+
+> **À noter :** les balises `canonical`, Open Graph et JSON-LD pointent déjà vers
+> `https://alyhachem.dev/`. C'est volontaire — cela évite que Google indexe l'URL
+> `github.io` en doublon. Tant que le domaine n'est pas branché, ne soumets donc pas
+> le site à la Search Console : il n'y a rien à indexer sous une adresse qui ne répond
+> pas encore.
 
 ### Si le domaine change
 
 Le domaine est écrit en dur à quatre endroits. Un chercher/remplacer suffit :
 
 ```bash
-grep -rl "alyhachem.dev" . | xargs sed -i 's|alyhachem\.dev|nouveau-domaine.sn|g'
+grep -rl "alyhachem.dev" . --exclude-dir=.git | xargs sed -i 's|alyhachem\.dev|nouveau-domaine.sn|g'
 ```
 
 Fichiers concernés : `index.html` (canonical, Open Graph, JSON-LD), `sitemap.xml`,
 `robots.txt`, `assets/js/main.js` (signature de l'e-mail).
+
+### Autres hébergeurs
+
+Si tu quittes GitHub Pages un jour : le dossier se dépose tel quel sur Netlify, Vercel
+ou Cloudflare Pages (aucune commande de build, dossier à publier = la racine), ou en FTP
+dans le `public_html/` d'un hébergeur classique. `404.html` est repris automatiquement
+comme page d'erreur partout.
 
 ## Formulaire de contact
 
@@ -96,6 +140,7 @@ encore. Ces trois actions comptent plus que tout le reste :
 1. **Google Search Console** — [search.google.com/search-console](https://search.google.com/search-console) :
    ajouter le domaine, vérifier la propriété, soumettre `https://alyhachem.dev/sitemap.xml`.
    C'est ce qui déclenche l'indexation, en général sous quelques jours.
+   *À faire une fois le domaine branché* (voir plus haut), pas avant.
 
 2. **Fiche d'établissement Google** — [business.google.com](https://business.google.com) :
    créer la fiche « Aly Hachem Development », catégorie *Développeur de logiciels* ou
