@@ -4,9 +4,9 @@ Site statique (HTML / CSS / JS, aucune dépendance, aucun build).
 
 | | |
 |---|---|
-| **En ligne** | https://laprise221.github.io/alyhachem-dev/ |
+| **En ligne** | https://alyhachem.dev |
 | **Dépôt** | https://github.com/laprise221/alyhachem-dev |
-| **Domaine prévu** | https://alyhachem.dev |
+| **Hébergement** | GitHub Pages (branche `main`, racine) |
 
 ## Contenu
 
@@ -49,35 +49,33 @@ git push
 
 État du déploiement : onglet **Actions** du dépôt, ou `gh api repos/laprise221/alyhachem-dev/pages --jq .status`.
 
-## Brancher le domaine alyhachem.dev
+## Domaine
 
-Le site tourne pour l'instant sur l'URL GitHub. Pour passer sur le vrai domaine :
+Le domaine `alyhachem.dev` est enregistré chez **OVH** et sert le site via GitHub Pages.
+Le fichier `CNAME` à la racine du dépôt déclare le domaine à GitHub — **ne le supprime
+pas**, sinon le site repasse sur l'URL `github.io`.
 
-1. **Chez le registrar du domaine**, créer les enregistrements DNS :
+Zone DNS attendue (manager OVH → *Domaines → alyhachem.dev → Zone DNS*) :
 
-   ```
-   A     @   185.199.108.153
-   A     @   185.199.109.153
-   A     @   185.199.110.153
-   A     @   185.199.111.153
-   CNAME www laprise221.github.io.
-   ```
+```
+A     @   185.199.108.153
+A     @   185.199.109.153
+A     @   185.199.110.153
+A     @   185.199.111.153
+CNAME www laprise221.github.io.
+```
 
-2. **Déclarer le domaine à GitHub** — cela crée le fichier `CNAME` à la racine :
+Une fois la propagation faite, cocher **« Enforce HTTPS »** dans *Settings → Pages*
+du dépôt (le certificat Let's Encrypt est gratuit et automatique ; le bouton reste
+grisé tant que GitHub n'a pas validé le DNS).
 
-   ```bash
-   gh api -X PUT repos/laprise221/alyhachem-dev/pages -f cname=alyhachem.dev
-   git pull   # récupérer le fichier CNAME créé par GitHub
-   ```
+Vérifications utiles :
 
-3. Attendre la propagation DNS (quelques minutes à 24 h), puis **cocher « Enforce HTTPS »**
-   dans *Settings → Pages*. Le certificat est gratuit et automatique.
-
-> **À noter :** les balises `canonical`, Open Graph et JSON-LD pointent déjà vers
-> `https://alyhachem.dev/`. C'est volontaire — cela évite que Google indexe l'URL
-> `github.io` en doublon. Tant que le domaine n'est pas branché, ne soumets donc pas
-> le site à la Search Console : il n'y a rien à indexer sous une adresse qui ne répond
-> pas encore.
+```bash
+dig +short alyhachem.dev              # doit renvoyer les 4 IP 185.199.x.153
+gh api repos/laprise221/alyhachem-dev/pages --jq '.cname, .status, .https_enforced'
+curl -sI https://alyhachem.dev | head -1
+```
 
 ### Si le domaine change
 
