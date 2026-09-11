@@ -82,18 +82,17 @@
       var tel = v('telephone');
       var type = v('type');
 
-      var subject = 'Demande de projet — ' + type + ' — ' + nom;
+      var subject = 'Demande de projet : ' + type + ' (' + nom + ')';
 
       var lines = [
         'Bonjour Aly,',
         '',
         v('message'),
         '',
-        '— — —',
         'Nom          : ' + nom,
-        'Entreprise   : ' + (entreprise || '—'),
+        'Entreprise   : ' + (entreprise || 'non renseignée'),
         'E-mail       : ' + email,
-        'Téléphone    : ' + (tel || '—'),
+        'Téléphone    : ' + (tel || 'non renseigné'),
         'Type de projet : ' + type,
         '',
         'Envoyé depuis alyhachem.dev'
