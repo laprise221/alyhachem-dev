@@ -114,9 +114,9 @@ ajouter, dites-le si besoin.
 
 ## Référencement — ce qui est déjà fait
 
-- `<title>` et meta description travaillés sur les mots-clés visés (58 et 145 caractères,
+- `<title>` et meta description travaillés sur les mots-clés visés (54 et 150 caractères,
   sous les limites d'affichage de Google)
-- H1 unique contenant *développement web, mobile & logiciel* ; hiérarchie H2/H3 respectée
+- `<title>` et H1 centrés sur *création / développement de site web au Sénégal* ; hiérarchie H2/H3 respectée
 - Données structurées Schema.org : `ProfessionalService` + `Person` (adresse Dakar,
   coordonnées GPS, zone desservie Sénégal), `WebSite`, `WebPage`, `OfferCatalog`
   des 9 services, `ItemList` des réalisations, `FAQPage`
@@ -156,7 +156,10 @@ Ensuite, régulièrement : ajouter chaque nouvelle réalisation dans la section
 
 ## Mots-clés visés
 
-`développement web Dakar` · `développeur web Sénégal` · `développement logiciel Dakar` ·
+Requêtes principales : `création site web Sénégal` · `développement site web Sénégal` ·
+`création site internet Dakar`
+
+Secondaires : `développement web Dakar` · `développeur web Sénégal` · `développement logiciel Dakar` ·
 `application mobile Sénégal` · `application web sur mesure` · `créer un site internet Dakar` ·
 `développeur freelance Dakar` · `agence de développement Sénégal` · `site e-commerce Sénégal` ·
-`référencement naturel Dakar`
+`référencement naturel Dakar` · `refonte site web Sénégal`
