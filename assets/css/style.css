@@ -524,6 +524,9 @@ a{ color:inherit; }
 .coord a{ color:var(--navy); font-weight:600; text-decoration:none; border-bottom:1px solid var(--rule); }
 .coord a:hover{ border-bottom-color:var(--navy); }
 
+.btn-wa{ margin-top:26px; }
+.btn-wa svg{ width:19px; height:19px; flex:none; color:#25D366; }
+
 .form{
   background:var(--mist);
   border:1px solid var(--rule);
